@@ -1,0 +1,10 @@
+sudo: required
+services:
+  - docker
+  #any name I want
+before_install:
+  - docker build -t dewaltt/docker-react -f Dockerfile.dev .
+  #run the tests with image created
+  # CI=true will outomatically exit after running tests with jest
+script:
+  - docker run -e CI=true dewaltt/docker-react npm run test
