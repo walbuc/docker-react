@@ -4,16 +4,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-      ports: "3000:3000"
-      volumes:
-        - /app/node_modules
-        # dont map node modules.
-        - .:/app
+    ports: "3000:3000"
+    volumes:
+      - /app/node_modules
+      # dont map node modules inside the container.
+      - .:/app
   test:
     build:
       context: .
       dockerfile: Dockerfile.dev
-      volumes:
-        - app/node_modules
-        - .:/app
-      command: ["npm", "run", "test"]
+    volumes:
+      - app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"]
